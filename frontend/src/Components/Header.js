@@ -3,45 +3,65 @@ import { Cloudinary } from "cloudinary-core";
 
 export default function Header() {
 	const [loading, setLoading] = useState(false);
+
 	const [image, setImage] = useState(null);
 	const [imageURL, setImageURL] = useState("");
 
+	const [prediction, setPrediction] = useState("");
+
 	const uploadImage = async (e) => {
 		const files = e.target.files;
+
 		const data = new FormData();
 		data.append("file", files[0]);
-		data.append("upload_preset", "wasteimages");
+		data.append("upload_preset", "footimg");
+
 		setLoading(true);
 
-		const res1 = await fetch("https://api.cloudinary.com/v1_1/neel0506/image/upload", {
+		const res1 = await fetch("https://api.cloudinary.com/v1_1/team-40/image/upload", {
 			method: "POST",
 			body: data,
-		});
-
-		const file = await res1.json();
-		console.log("Image Uploaded:");
-		console.log(file.secure_url);
-		setImageURL(file.secure_url);
-
-		const file1 = await fetch("https://waste-segregation-backend.herokuapp.com/predict", {
-			method: "POST",
-			headers: {
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify({
-				image: file.secure_url,
-			}),
 		})
 			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-				setImage(data.predict);
-				setLoading(false);
+			.then(async (data) => {
+				console.log("Response from cloudinary", data);
+
+				if (!data.error && data.secure_url != null) {
+					setImageURL(data.secure_url);
+
+					const res2 = await fetch("https://e098-117-99-48-74.in.ngrok.io/predict-arch", {
+						method: "POST",
+						headers: {
+							"Content-type": "application/json",
+						},
+						body: JSON.stringify({
+							image: data.secure_url,
+						}),
+					})
+						.then((res) => res.json())
+						.then((data) => {
+							console.log("Response from flask", data);
+
+							if (!data.error && data.prediction != null) {
+								setPrediction(data.prediction);
+							} else {
+								alert("Server error, please try again after some time.");
+							}
+						})
+						.catch((err) => {
+							console.log("Some error while processing the image.", err);
+							alert("Server error, please try again after some time.");
+						});
+				} else {
+					alert("Image upload failed.");
+				}
 			})
 			.catch((err) => {
-				console.log(err);
-				console.log("Some Error while processing the image.");
+				console.log("Some Error while uploading the image.", err);
+				alert("Server error, please try again after some time.");
 			});
+
+		setLoading(false);
 	};
 
 	function refreshPage() {
@@ -50,18 +70,24 @@ export default function Header() {
 
 	return (
 		<div>
-			<section class="ui-section-hero">
-				<div class="ui-layout-container">
-					<div class="ui-section-hero__layout ui-layout-grid ui-layout-grid-2">
+			<section className="ui-section-hero">
+				<div className="ui-layout-container">
+					<div className="ui-section-hero__layout ui-layout-grid ui-layout-grid-2">
 						<div>
-							<h1>Waste Segregation</h1>
-							<p class="ui-text-intro">
-								We know that your life is of no value but the life of our planet does! So, help us
-								segregate waste according to the category.
+							<h1>Flatness Detection</h1>
+							<p className="ui-text-intro">
+								Relax, we have got your back! Upload a side view image of you foot below, to get to know
+								whether you have flatness or not...
 							</p>
 
-							<div class="ui-component-cta ui-layout-flex">
-								<input type="file" id="InputFile" name="file" onChange={uploadImage} />
+							<div className="ui-component-cta ui-layout-flex">
+								<input
+									type="file"
+									id="InputFile"
+									name="file"
+									accept="image/png, image/gif, image/jpeg"
+									onChange={uploadImage}
+								/>
 
 								<button onClick={refreshPage} className="display-button">
 									Reset
@@ -78,13 +104,15 @@ export default function Header() {
 								src="https://cdn.dribbble.com/users/227188/screenshots/6792663/recycle.gif"
 							/>
 						) : (
-							<div className="display-image">
-								<img className="waste-image" src={imageURL} />
-							</div>
+							<>
+								<div className="display-image">
+									<img className="waste-image" src={imageURL} />
+								</div>
+								<div className="waste-type-div">
+									<h2 className="waste-heading">{prediction}</h2>
+								</div>
+							</>
 						)}
-						<div className="waste-type-div">
-							<h2 class="waste-heading">{image}</h2>
-						</div>
 					</div>
 				</div>
 			</section>

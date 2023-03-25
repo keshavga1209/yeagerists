@@ -363,6 +363,7 @@ input[name="toggle"] {
 .ui-section-header {
 	padding-bottom: 1.25rem;
 	padding-top: 1.25rem;
+	background-color: var(--ui-color-background-secondary);
 }
 
 .ui-section-header__layout {
@@ -648,8 +649,8 @@ input[name="toggle"] {
   ------------------------------------------------------------*/
 
 	.ui-section-header {
-		padding-bottom: 0;
-		padding-top: 2rem;
+		padding-bottom: 1rem;
+		padding-top: 1rem;
 	}
 
 	/* ICON */
