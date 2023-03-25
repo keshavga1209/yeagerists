@@ -24,12 +24,12 @@ export default function Navbar() {
 								Home
 							</a> */}
 							<a
-								href="https://yourfootdoctor.in/"
+								href="https://yourfootdoctor.in/products/unisex-flat-feet-shoe-insole"
 								target="_blank"
 								role="link"
 								aria-label="#"
 								className="ui-section-header--nav-link">
-								MoreInfo
+								Get Product
 							</a>
 							<a
 								href="https://github.com/keshavga1209/yeagerists"

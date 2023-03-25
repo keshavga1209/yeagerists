@@ -620,7 +620,8 @@ input[name="toggle"] {
 	}
 
 	.ui-layout-column-4 {
-		width: calc((var(--ui-layout-grid) * 4) + (var(--ui-layout-gutter) * 3));
+		/* width: calc((var(--ui-layout-grid) * 4) + (var(--ui-layout-gutter) * 3)); */
+		width: 60%;
 	}
 
 	/*------------------------------------------------------------
@@ -882,4 +883,12 @@ input[name="toggle"] {
 	background-size: auto 6px;
 	background-repeat: repeat-x;
 	text-decoration: none;
+}
+
+.ui-image-half-left {
+	border-radius: 2rem;
+}
+
+.ui-section-feature-glossary {
+	padding-top: 20%;
 }

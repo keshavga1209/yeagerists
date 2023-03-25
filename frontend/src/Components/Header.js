@@ -29,7 +29,7 @@ export default function Header() {
 				if (!data.error && data.secure_url != null) {
 					setImageURL(data.secure_url);
 
-					const res2 = await fetch("https://e098-117-99-48-74.in.ngrok.io/predict-arch", {
+					const res2 = await fetch("https://489d-117-99-48-74.in.ngrok.io/predict-arch", {
 						method: "POST",
 						headers: {
 							"Content-type": "application/json",
@@ -77,7 +77,7 @@ export default function Header() {
 							<h1>Flatness Detection</h1>
 							<p className="ui-text-intro">
 								Relax, we have got your back! Upload a side view image of you foot below, to get to know
-								whether you have flatness or not...
+								whether you have a flat foot or not...
 							</p>
 
 							<div className="ui-component-cta ui-layout-flex">
@@ -95,7 +95,8 @@ export default function Header() {
 							</div>
 						</div>
 
-						<img src="https://cdn.dribbble.com/users/1068771/screenshots/8801476/media/517d9a1e6d85d294d5daa0a870633994.jpg" />
+						{/* <img src="https://cdn.dribbble.com/users/1068771/screenshots/8801476/media/517d9a1e6d85d294d5daa0a870633994.jpg" /> */}
+						<img src="https://cdn.dribbble.com/users/1061799/screenshots/10222586/media/20d15a1a163e82fe69814269aa120742.png" />
 					</div>
 					<div>
 						{loading ? (
