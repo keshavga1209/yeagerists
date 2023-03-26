@@ -832,6 +832,7 @@ input[name="toggle"] {
 .waste-image {
 	width: 500px;
 	border-radius: 10px;
+	margin: 2vh auto;
 }
 
 .ui-section-hero {
@@ -907,4 +908,17 @@ input[name="toggle"] {
 
 img {
 	max-width: 100%;
+}
+
+.croping-img {
+	max-width: 50vw !important;
+	max-height: 50vh !important;
+}
+
+.centering-div {
+	margin: 2vh auto;
+}
+
+h4 {
+	vertical-align: middle;
 }
