@@ -7,7 +7,7 @@ export default function WasteDetail() {
 		<div>
 			<section className="ui-section-feature ui-section-feature-glossary">
 				<div className="ui-layout-container">
-					<h1>Short glossary:</h1>
+					<h1>Glossary:</h1>
 					<img src={img1} alt="" width={"70%"} className="ui-section-large-img" />
 
 					<div className="ui-section-feature__layout ui-layout-grid ui-layout-grid-2">
