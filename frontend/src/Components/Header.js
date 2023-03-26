@@ -124,7 +124,7 @@ export default function Header() {
 					setImageURL(data.secure_url);
 
 					const res2 = await fetch(
-						"https://6749-2401-4900-53f0-45f6-d4f0-84e6-ab86-9de9.in.ngrok.io/predict-arch",
+						"https://5de1-2401-4900-53f0-45f6-419e-de7b-186b-28fc.in.ngrok.io/predict-arch",
 						{
 							method: "POST",
 							headers: {

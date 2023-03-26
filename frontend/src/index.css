@@ -593,10 +593,6 @@ input[name="toggle"] {
   IMAGE
   ------------------------------------------------------------*/
 
-	.ui-image-half-right {
-		padding-left: var(--ui-layout-gutter);
-	}
-
 	/*------------------------------------------------------------
   LAYOUT
   ------------------------------------------------------------*/
@@ -890,6 +886,13 @@ input[name="toggle"] {
 	border-radius: 2rem;
 }
 
+.ui-image-half-right {
+	padding-left: var(--ui-layout-gutter);
+	border-radius: 2rem;
+	border-top-left-radius: 3rem !important;
+	border-bottom-left-radius: 3rem !important;
+}
+
 .ui-section-feature-glossary {
 	padding-top: 20%;
 }
@@ -921,4 +924,14 @@ img {
 
 h4 {
 	vertical-align: middle;
+}
+
+.comaparing-images {
+	display: flex;
+	width: 100%;
+	margin: 4vh auto;
+}
+
+.ui-section-feature-instructions {
+	padding-bottom: 0px;
 }
