@@ -23,7 +23,7 @@ def predict(imgpath, model):
     urllib.request.urlretrieve(imgpath, filename)
 
     img = keras.utils.load_img(
-        filename, target_size=(256, 256)
+        filename, target_size=(200, 200)
     )
     img_array = keras.utils.img_to_array(img)
     img_array = tf.expand_dims(img_array, 0) # Create a batch
@@ -33,7 +33,7 @@ def predict(imgpath, model):
     max_val = max(predictions[0])
     if(max_val == predictions[0][0]):
         return categories[0]
-    elif max_val == prediction[0][1]:
+    elif max_val == predictions[0][1]:
         return categories[1]
     return categories[2]
 
@@ -44,7 +44,7 @@ def predict_arch():
     # print(data["image"])
     image = data["image"]
     # image = tmp_url
-    model = load_model('models/model50_1')
+    model = load_model('models/Keshav_Inception_final')
     prediction = predict(image, model)
     print(prediction)
     result = {}
