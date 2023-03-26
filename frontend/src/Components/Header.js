@@ -367,15 +367,17 @@ export default function Header() {
 								className="loading-gif"
 								src="https://cdn.dribbble.com/users/4531160/screenshots/14904162/media/921bfb0808a9d70e2a8c4c43fe5191a0.gif"
 							/>
-						) : (
+						) : prediction ? (
 							<>
 								<div className="display-image">
 									<img className="waste-image" src={imageURL} />
 								</div>
 								<div className="waste-type-div">
-									<h2 className="waste-heading">{prediction}</h2>
+									<h2 className="waste-heading">Predicted arch type: {prediction}</h2>
 								</div>
 							</>
+						) : (
+							<></>
 						)}
 					</div>
 				</div>
