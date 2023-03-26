@@ -892,3 +892,19 @@ input[name="toggle"] {
 .ui-section-feature-glossary {
 	padding-top: 20%;
 }
+
+.MuiButtonBase-root {
+	text-transform: none !important;
+}
+
+/* Cropping */
+.Crop-Controls {
+	margin-bottom: 10px;
+}
+.Crop-Controls > * {
+	margin-bottom: 3px;
+}
+
+img {
+	max-width: 100%;
+}
