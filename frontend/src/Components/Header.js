@@ -9,6 +9,8 @@ import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
 import "react-image-crop/dist/ReactCrop.css";
 
+const { REACT_APP_UPLOAD_URL, REACT_APP_API_URL } = process.env;
+
 // This is to demonstate how to make and center a % aspect crop
 // which is a bit trickier so we use some helper functions.
 function centerAspectCrop(mediaWidth, mediaHeight, aspect) {
@@ -112,7 +114,7 @@ export default function Header() {
 		data.append("file", files[0]);
 		data.append("upload_preset", "footimg");
 
-		const res1 = await fetch("https://api.cloudinary.com/v1_1/team-40/image/upload", {
+		const res1 = await fetch(REACT_APP_UPLOAD_URL, {
 			method: "POST",
 			body: data,
 		})
@@ -123,18 +125,15 @@ export default function Header() {
 				if (!data.error && data.secure_url != null) {
 					setImageURL(data.secure_url);
 
-					const res2 = await fetch(
-						"https://f9ba-2401-4900-5630-44c9-cff9-e533-3cd6-91ff.in.ngrok.io/predict-arch",
-						{
-							method: "POST",
-							headers: {
-								"Content-type": "application/json",
-							},
-							body: JSON.stringify({
-								image: data.secure_url,
-							}),
-						}
-					)
+					const res2 = await fetch(REACT_APP_API_URL, {
+						method: "POST",
+						headers: {
+							"Content-type": "application/json",
+						},
+						body: JSON.stringify({
+							image: data.secure_url,
+						}),
+					})
 						.then((res) => res.json())
 						.then((data) => {
 							console.log("Response from flask", data);
